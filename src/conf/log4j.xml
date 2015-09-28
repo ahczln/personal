@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%l]- %m %n" />
+		</layout>
+	</appender>
+
+	<appender name="COMMON"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="appServer/bpo.log" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<param name="encoding" value="utf-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-d{yyyy-MM-dd HH:mm:ss} [%t] [%p][%l]- %m %n" />
+		</layout>
+	</appender>
+	
+	<appender name="CLUSTER"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="appServer/bpo_cluster.log" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<param name="encoding" value="utf-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-d{yyyy-MM-dd HH:mm:ss} [%t] [%p][%l]- %m %n" />
+		</layout>
+	</appender>
+
+	<logger name="com">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="org.hibernate.SQL">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.hibernate">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.jboss.cache">
+		<level value="ERROR" />
+		<appender-ref ref="CLUSTER" />
+	</logger>
+	
+	<logger name="org.jgroups">
+		<level value="ERROR" />
+		<appender-ref ref="CLUSTER" />
+	</logger>
+
+	<logger name="org.jbpm">
+		<level value="ERROR" />
+	</logger>
+	
+	<logger name="com.opensymphony">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="com.freemarker">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.apache">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.springframework">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.quartz">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="com.tpcorp">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.directwebremoting">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="org.codehaus">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="com.mchange">
+		<level value="ERROR" />
+	</logger>
+
+	<logger name="freemarker">
+		<level value="ERROR" />
+	</logger>
+
+	<root>
+		<priority value="ERROR" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="COMMON" />
+	</root>
+
+</log4j:configuration>
